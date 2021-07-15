@@ -1,0 +1,59 @@
+type Query {
+    # querys
+
+    random: mensaje! 
+    messagesByUser(userId:ID):[mensaje!]
+
+}
+ 
+type Mutation {
+    # Mutations  usuarios registro/autentificacion/cambiar contraseña
+
+    NewUser (user: UserInput!) : Users!
+    AuthenticateUser (input: AutenticateUserInput!): Token
+    UpDatePassword (password:String, userName:String):Users!
+
+    # Mutations  mensajes insertar/modificar
+
+    NewMessage(input:MessageInput ) : String 
+    UpDateMessage(input: UpMessage) : mensaje!
+
+} 
+#inputs 
+input UserInput {
+    userName:String!
+    Password: String!
+}
+
+input AutenticateUserInput{
+    userName: String!
+    Password:String!
+}
+
+input MessageInput {
+    texto: String!
+    numero: Int
+    userId: ID!
+}
+
+input UpMessage{
+     texto: String!
+     id:String
+}
+
+#Types 
+type Token{
+    token: String!
+}
+
+type Users {
+    id: ID!
+    userName:String!
+}
+
+type mensaje{
+    id: ID!
+    texto: String!
+    numero: Int
+    userId: ID!
+}

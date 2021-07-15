@@ -1,0 +1,27 @@
+
+datasource db {
+    provider = "mongodb"
+    url = env("DB_MONGO")
+}
+
+generator client {
+    provider = "prisma-client-js"
+    previewFeatures = ["mongodb"]
+}
+
+
+
+// tablas
+
+model Message{
+    id String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+    texto String
+    userId String
+    numero Int
+}
+
+model Users{
+    id String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+    UserName String
+    Password String
+}

@@ -58,9 +58,7 @@ const mutation : IResolvers = {
         }
         // Crear el token
 
-        return {
-            token : crearToken(existeUsuario, process.env.SECRET, '72h')
-        }
+        return existeUsuario;
 
     },
     UpDatePassword: async (__:void, {password,userName}) =>{
@@ -120,6 +118,24 @@ const mutation : IResolvers = {
             console.log(error)
         }
 
+    },
+    random: async () =>{
+
+        try {
+            const totalMensajes = await db.mensajes.find(); 
+            const max = totalMensajes.length;
+            
+            //Generamos un numero random 
+            const numero = Math.floor((Math.random() * (max+1 - 1)) +1);
+           
+            const mensaje = await db.mensajes.findOne({numero:numero});
+        
+            return mensaje;
+
+        } 
+        catch (error) {
+            console.log(error)
+        }
     }
 
     }

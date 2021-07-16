@@ -1,20 +1,18 @@
 type Query {
     # querys
-
-    random: mensaje! 
     messagesByUser(userId:ID):[mensaje!]
-
+   
 }
  
 type Mutation {
     # Mutations  usuarios registro/autentificacion/cambiar contraseña
 
     NewUser (user: UserInput!) : Users!
-    AuthenticateUser (input: AutenticateUserInput!): Token
+    AuthenticateUser (input: AutenticateUserInput!): Users
     UpDatePassword (password:String, userName:String):Users!
 
     # Mutations  mensajes insertar/modificar
-
+    random: mensaje! 
     NewMessage(input:MessageInput ) : String 
     UpDateMessage(input: UpMessage) : mensaje!
 

@@ -27,26 +27,7 @@ const query : IResolvers = {
             catch (error) {
                 console.log(error);            
             }
-        },
-
-        random: async () =>{
-
-            try {
-                const totalMensajes = await db.mensajes.find(); 
-                const max = totalMensajes.length;
-                
-                //Generamos un numero random 
-                const numero = Math.floor((Math.random() * (max+1 - 1)) +1);
-               
-                const mensaje = await db.mensajes.findOne({numero:numero});
-            
-                return mensaje;
-
-            } 
-            catch (error) {
-                console.log(error)
-            }
-        }
+        }        
 
     }
 }
